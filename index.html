@@ -4,60 +4,322 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Cole Mitchell</title>
+    <meta name="description" content="Cole Mitchell - Software Engineer Portfolio" />
+    <meta name="author" content="Cole Mitchell" />
+    <title>Cole Mitchell | Software Engineer</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v6.4.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/font-mfizz-2.4.1/font-mfizz.css">
-
-
+    
+    <!-- Custom CSS additions -->
+    <style>
+        /* Light mode (default) */
+        :root {
+            --bg-color: #ffffff;
+            --bg-nav: #000000;
+            --text-color: #000000;
+            --text-muted: #555555;
+            --accent-color: #000000;
+            --accent-hover: #333333;
+            --border-color: #e0e0e0;
+            --card-bg: #ffffff;
+        }
+        
+        /* Dark mode */
+        [data-theme="dark"] {
+            --bg-color: #000000;
+            --bg-nav: #000000;
+            --text-color: #ffffff;
+            --text-muted: #aaaaaa;
+            --accent-color: #ffffff;
+            --accent-hover: #cccccc;
+            --border-color: #333333;
+            --card-bg: #111111;
+        }
+        
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            line-height: 1.7;
+        }
+        
+        .text-primary {
+            color: var(--accent-color) !important;
+        }
+        
+        .bg-primary {
+            background-color: var(--bg-nav) !important;
+        }
+        
+        #sideNav {
+            position: fixed;
+        }
+        
+        [data-theme="dark"] #sideNav {
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        @media (max-width: 991.98px) {
+            #sideNav {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            
+            #sideNav .navbar-brand {
+                order: 1;
+                flex-grow: 1;
+            }
+            
+            #sideNav .navbar-toggler {
+                order: 3;
+            }
+            
+            #sideNav .theme-toggle {
+                order: 2;
+                position: static;
+                transform: none;
+                margin: 0 0.5rem 0 0;
+            }
+            
+            #sideNav .navbar-collapse {
+                order: 4;
+                width: 100%;
+            }
+            
+            [data-theme="dark"] #sideNav {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+        }
+        
+        .navbar-dark .navbar-nav .nav-link {
+            opacity: 0.85;
+            transition: opacity 0.2s ease;
+        }
+        
+        .navbar-dark .navbar-nav .nav-link:hover {
+            opacity: 1;
+        }
+        
+        section.resume-section {
+            padding-top: 5rem !important;
+            padding-bottom: 5rem !important;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        hr.m-0 {
+            display: none;
+        }
+        
+        .img-profile {
+            border: 3px solid var(--border-color);
+            transition: opacity 0.2s ease;
+        }
+        
+        .img-profile:hover {
+            opacity: 0.9;
+        }
+        
+        .social-icons .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 3rem;
+            width: 3rem;
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            font-size: 1.25rem;
+            margin-right: 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        .social-icons .social-icon:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .skill-icon {
+            font-size: 2rem;
+            margin: 0.5rem;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+        }
+        
+        .skill-icon:hover {
+            color: var(--accent-color);
+        }
+        
+        .resume-iframe {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        
+        .subheading {
+            color: var(--accent-color);
+            font-weight: 500;
+            text-transform: none;
+            font-size: 1.1rem;
+        }
+        
+        .ImageBorder {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        
+        /* Dark mode toggle */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+            cursor: pointer;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            margin: 0.5rem auto;
+        }
+        
+        .theme-toggle:hover {
+            color: rgba(255, 255, 255, 1);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .theme-toggle:focus {
+            outline: none;
+        }
+        
+        @media (min-width: 992px) {
+            .theme-toggle {
+                position: absolute;
+                bottom: 1.5rem;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0;
+            }
+        }
+        
+        /* Minimal heading styles */
+        h1, h2, h3 {
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 1.75rem;
+            color: var(--text-color);
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+        }
+        
+        .lead {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+        
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+        
+        a:hover {
+            color: var(--accent-hover);
+            text-decoration: none;
+            border-bottom-color: var(--accent-color);
+        }
+        
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .dev-icons .list-inline-item {
+            margin-right: 0.25rem;
+        }
+    </style>
 </head>
 
 <body id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"><span class="d-block d-lg-none">Cole Mitchell</span><span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="" /></span></a
-            ><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#side-projects">Side Projects</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#resume">Resume</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
-        </ul>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <span class="d-block d-lg-none">Cole Mitchell</span>
+            <span class="d-none d-lg-block">
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="Cole Mitchell profile picture" />
+            </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#resume">Resume</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
+            </ul>
         </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <span class="theme-icon-moon"><i class="fa-solid fa-moon"></i></span>
+            <span class="theme-icon-sun" style="display: none;"><i class="fa-solid fa-sun"></i></span>
+        </button>
     </nav>
     <!-- Page Content-->
     <div class="container-fluid p-0">
         <!-- About-->
         <section class="resume-section" id="about">
-            <div class="resume-section-content">
+            <div class="resume-section-content fade-in">
                 <h1 class="mb-0">Cole <span class="text-primary">Mitchell</span></h1>
-                <div class="mb-5"> w.coleman.mitchell[at]gmail.com</div>
+                <div class="mb-5 lead">w.coleman.mitchell[at]gmail.com</div>
                 <p class="lead mb-5">Hi there 👋<br><br>My name is Cole and I'm a full stack software engineer living in NYC. I have hands-on experience building scalable applications using Python, TypeScript/Javascript,
                     Ruby and Java.
-                    <br><br>Currently, I'm working at <a href="https://coastpay.com">Coast</a> building the future of fuel cards. I'm also concurrently pursuing a Masters in Computer Science at Georgia Tech.</p>
+                    <br><br>Currently, I'm working at <a href="https://coastpay.com" class="text-primary">Coast</a> building the future of fuel cards. I'm also concurrently pursuing a Masters in Computer Science at Georgia Tech.</p>
                 <div class="social-icons">
-                    <a class="social-icon" href="https://www.linkedin.com/in/cole-mitchell-516710aa/"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="social-icon" href="https://www.github.com/ColemanMitch">
-                        <i class="fab fa-github"></i></a>
+                    <a class="social-icon" href="https://www.linkedin.com/in/cole-mitchell-516710aa/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="social-icon" href="https://www.github.com/ColemanMitch" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
                 </div>
             </div>
         </section>
         <hr class="m-0" />
         <!-- Experience-->
         <section class="resume-section" id="experience">
-            <div class="resume-section-content">
+            <div class="resume-section-content fade-in">
                 <h2 class="mb-5">Experience</h2>
                 <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                     <div class="flex-grow-1">
@@ -78,7 +340,6 @@
                             <li>Supporting a large pharma company in building and maintaining a business rules engine in Python that generates leads for their salesforce, integrating with a third-party API</li>
                             <li>Building out a greenfield banking platform in the agcredit space, supporting both the frontend (React, TypeScript, GraphQL) and backend (Java Spring)</li>
                         </ul>
-                        </ul>
                     </div>
                     <div class="flex-shrink-0"><span class="text-primary">March 2023 - October 2024<br>April 2021 - February 2023</span></div>
                 </div>
@@ -90,7 +351,7 @@
                         <p>In Deloitte Consulting's Strategy & Analytics offering, I had the opportunity to work on several cases across various industries. Some past clients include:</p>
                         <ul>
                             <li>A national hospital chain focused on optimizing their revenue cycle by mitigating insurance payor denials</li>
-                            <li>The current Illinois Governor J.B. Pritzker’s Healthy Children and Families Transition Committee</li>
+                            <li>The current Illinois Governor J.B. Pritzker's Healthy Children and Families Transition Committee</li>
                             <li>A state government client where I led a team of ETL and Tableau developers to build dashboards quantifying the impact (financial issuance, individuals affected) of COVID-19 related policy changes</li>
                         </ul>
                     </div>
@@ -109,7 +370,7 @@
         <hr class="m-0" />
         <!-- Education-->
         <section class="resume-section" id="education">
-            <div class="resume-section-content">
+            <div class="resume-section-content fade-in">
                 <h2 class="mb-5">Education</h2>
                 <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                     <div class="flex-grow-1">
@@ -138,24 +399,24 @@
         <hr class="m-0" />
         <!-- Skills-->
         <section class="resume-section" id="skills">
-            <div class="resume-section-content">
+            <div class="resume-section-content fade-in">
                 <h2 class="mb-5">Skills</h2>
                 <div class="subheading mb-3">Programming Languages & Frameworks</div>
                 <ul class="list-inline dev-icons">
-                    <li class="list-inline-item"><a href="#skills" title="TypeScript/JavaScript" data-toggle="tooltip"><i class="fab fa-js-square"></i></a></li>
-                    <li class="list-inline-item"><a href="#skills" title="React" data-toggle="tooltip"><i class="fab fa-react"></i></a></li>
-                    <li class="list-inline-item"><a href="#skills" title="Python" data-toggle="tooltip"><i class="fab fa-python"></i></a></li>
-                    <li class="list-inline-item"><a href="#skills" title="Bootstrap" data-toggle="tooltip"><i class="fab fa-bootstrap"></i></a></li>
-                    <li class="list-inline-item"><a href="#skills" title="Java" data-toggle="tooltip"><i class="fab fa-java"></i></a></li>
-                    <li class="list-inline-item"><a href="#skills" title="Ruby" data-toggle="tooltip"><i class="icon-ruby"></i></a></li>
-                    <li class="list-inline-item"><a href="#skills" title="Rails" data-toggle="tooltip"><i class="icon-ruby-on-rails"></i></a></li>
-                    <li class="list-inline-item"><a href="#skills" title="Django" data-toggle="tooltip"><i class="icon-django"></i></a></li>
-                    <li class="list-inline-item"><a href="#skills" title="Flask" data-toggle="tooltip"><i class="icon-flask"></i></a></li>
-                    <li class="list-inline-item"><a href="#skills" title="C++" data-toggle="tooltip"><i class="icon-cplusplus"></i></a></li>
-                    <li class="list-inline-item"><a href="#skills" title="SQL" data-toggle="tooltip"><i class="fas fa-database"></i></a></li>
-                    <li class="list-inline-item"><a href="#skills" title="Node.js" data-toggle="tooltip"><i class="fab fa-node-js"></i></a></li>
-                    <li class="list-inline-item"><a href="#skills" title="HTML" data-toggle="tooltip"><i class="fab fa-html5"></i></a></li>
-                    <li class="list-inline-item"><a href="#skills" title="CSS" data-toggle="tooltip"><i class="fab fa-css3"></i></i></a></li>
+                    <li class="list-inline-item"><a href="#skills" title="TypeScript/JavaScript" data-toggle="tooltip" class="skill-icon"><i class="fab fa-js-square"></i></a></li>
+                    <li class="list-inline-item"><a href="#skills" title="React" data-toggle="tooltip" class="skill-icon"><i class="fab fa-react"></i></a></li>
+                    <li class="list-inline-item"><a href="#skills" title="Python" data-toggle="tooltip" class="skill-icon"><i class="fab fa-python"></i></a></li>
+                    <li class="list-inline-item"><a href="#skills" title="Bootstrap" data-toggle="tooltip" class="skill-icon"><i class="fab fa-bootstrap"></i></a></li>
+                    <li class="list-inline-item"><a href="#skills" title="Java" data-toggle="tooltip" class="skill-icon"><i class="fab fa-java"></i></a></li>
+                    <li class="list-inline-item"><a href="#skills" title="Ruby" data-toggle="tooltip" class="skill-icon"><i class="icon-ruby"></i></a></li>
+                    <li class="list-inline-item"><a href="#skills" title="Rails" data-toggle="tooltip" class="skill-icon"><i class="icon-ruby-on-rails"></i></a></li>
+                    <li class="list-inline-item"><a href="#skills" title="Django" data-toggle="tooltip" class="skill-icon"><i class="icon-django"></i></a></li>
+                    <li class="list-inline-item"><a href="#skills" title="Flask" data-toggle="tooltip" class="skill-icon"><i class="icon-flask"></i></a></li>
+                    <li class="list-inline-item"><a href="#skills" title="C++" data-toggle="tooltip" class="skill-icon"><i class="icon-cplusplus"></i></a></li>
+                    <li class="list-inline-item"><a href="#skills" title="SQL" data-toggle="tooltip" class="skill-icon"><i class="fas fa-database"></i></a></li>
+                    <li class="list-inline-item"><a href="#skills" title="Node.js" data-toggle="tooltip" class="skill-icon"><i class="fab fa-node-js"></i></a></li>
+                    <li class="list-inline-item"><a href="#skills" title="HTML" data-toggle="tooltip" class="skill-icon"><i class="fab fa-html5"></i></a></li>
+                    <li class="list-inline-item"><a href="#skills" title="CSS" data-toggle="tooltip" class="skill-icon"><i class="fab fa-css3-alt"></i></a></li>
                 </ul>
                 <div class="subheading mb-3">Additional Skills</div>
                 <ul class="fa-ul mb-0">
@@ -180,62 +441,78 @@
         <hr class="m-0" />
         <!-- Interests-->
 
+        <!-- Side Projects section - commented out
         <hr class="m-0" />
-        <!-- Awards-->
         <section class="resume-section" id="side-projects">
-            <div class="resume-section-content">
+            <div class="resume-section-content fade-in">
                 <h2 class="mb-5">Side Projects</h2>
-                <h4>Divvy-Bikes-Scraper</h4>
-                <center><img src="https://user-images.githubusercontent.com/44789534/162628460-c75272bf-42a8-4a21-9e63-edabfe0a4a3f.png" width="30%" /></center>
-                <p>Divvy-Bikes-Scraper is a Python script that enables a Divvy bikes member to export all their ride data into a .csv file.</p>
-                <p>Lyft, the operator of Divvy bikes, does not have a public API for Divvy bikes so I had to reverse engineer the necessary GraphQL requests using the Network tab in Chrome Dev Tools.</p>
-                <p><u><a href="https://github.com/ColemanMitch/Divvy-Bikes-Scraper">Link to repo on GitHub</a></u></p>
-                <h4>Spowerfy-Redux</h4>
-                <center><img src="https://user-images.githubusercontent.com/44789534/162627337-af8a3ed6-8727-4603-9cd7-38729679d489.png" width="50%" /></center>
-                <p>Spowerfy-Redux is a web app written in React and Node that controls a user's Spotify playback to skip to the next song in a playlist at a specified interval (users can select between 5 - 120 seconds). Users also have the option to start
-                    the playback on any of their active devices and any of their playlists. The ideal use case for Spowerfy is to automate your next power hour! 🍺 <br><br> It is also a refactor of an existing project that I built back in 2020 in Python
-                    with Flask which can be found linked <a href="https://github.com/ColemanMitch/Spowerfy">here.</a></p>
-                <p><u><a href="https://spowerfy.onrender.com/">Link</a></u> to project.
-                    <p><u><a href="https://github.com/ColemanMitch/Spowerfy-Redux">Link to repo on GitHub</a></u></p>
-                    <hr>
-                    <h4>GroupMe.FYI</h4>
-                    <center><img src="https://user-images.githubusercontent.com/44789534/162627905-4981ec62-70f2-419d-b54d-c3fbbfe3650e.png" width="50%" /></center>
-                    <p>GroupMe.FYI is a web app written in Django that authenticates with GroupMe allowing users to see key stats (total likes, total messages, etc.) about the user's groups.</p>
-                    <p><u>Note:</u> I'm currently working on porting over this project from Python to Ruby which you can find <a href="https://GroupMeFYI-Rails.colemanmitch.repl.co">linked here on Replit</a></p>
-                    <p><u><a href="https://github.com/ColemanMitch/GroupMe.FYI">Link to repo on GitHub</a></u></p>
-                    <hr>
-                    <h4>Speech2Tweet</h4>
-                    <center><img src="assets/img/Speech2Tweet_Live_Demo.gif" width=70% class="ImageBorder"></center>
-                    <br>
-                    <p>Speech2Tweet is an Alexa skill I created where a user can send a tweet with their Echo device via dictation.</p>
-                    <p>Originally, I wanted to create this Alexa skill using Python, but ran into issues with the handling of <a href="https://developer.amazon.com/en-US/docs/alexa/custom-skills/create-and-edit-custom-slot-types.html">custom slot types</a>                        (customer user input). I took the dead-end I ran into with Python as an opportunity to brush up on JavaScript. The embedded gif above shows the invocation of the skill in the Alexa Developer Console side-by-side with the output
-                        on Twitter. </p>
-                    <p>Note that the source of my "hello world" tweet is "Speech 2 Tweet"</p>
-                    <p><u><a href="https://github.com/ColemanMitch/Speech2Tweet">Link to repo on GitHub</a></u></p>
-                    <hr>
+                
+                <div class="project-card">
+                    <div class="content">
+                        <h4>Divvy-Bikes-Scraper</h4>
+                        <center><img src="https://user-images.githubusercontent.com/44789534/162628460-c75272bf-42a8-4a21-9e63-edabfe0a4a3f.png" width="30%" /></center>
+                        <p>Divvy-Bikes-Scraper is a Python script that enables a Divvy bikes member to export all their ride data into a .csv file.</p>
+                        <p>Lyft, the operator of Divvy bikes, does not have a public API for Divvy bikes so I had to reverse engineer the necessary GraphQL requests using the Network tab in Chrome Dev Tools.</p>
+                        <p><u><a href="https://github.com/ColemanMitch/Divvy-Bikes-Scraper" class="text-primary">Link to repo on GitHub</a></u></p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="content">
+                        <h4>Spowerfy-Redux</h4>
+                        <center><img src="https://user-images.githubusercontent.com/44789534/162627337-af8a3ed6-8727-4603-9cd7-38729679d489.png" width="50%" /></center>
+                        <p>Spowerfy-Redux is a web app written in React and Node that controls a user's Spotify playback to skip to the next song in a playlist at a specified interval (users can select between 5 - 120 seconds). Users also have the option to start
+                            the playback on any of their active devices and any of their playlists. The ideal use case for Spowerfy is to automate your next power hour! 🍺 <br><br> It is also a refactor of an existing project that I built back in 2020 in Python
+                            with Flask which can be found linked <a href="https://github.com/ColemanMitch/Spowerfy">here.</a></p>
+                        <p><u><a href="https://spowerfy.onrender.com/">Link</a></u> to project.
+                        <p><u><a href="https://github.com/ColemanMitch/Spowerfy-Redux">Link to repo on GitHub</a></u></p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="content">
+                        <h4>GroupMe.FYI</h4>
+                        <center><img src="https://user-images.githubusercontent.com/44789534/162627905-4981ec62-70f2-419d-b54d-c3fbbfe3650e.png" width="50%" /></center>
+                        <p>GroupMe.FYI is a web app written in Django that authenticates with GroupMe allowing users to see key stats (total likes, total messages, etc.) about the user's groups.</p>
+                        <p><u>Note:</u> I'm currently working on porting over this project from Python to Ruby which you can find <a href="https://GroupMeFYI-Rails.colemanmitch.repl.co">linked here on Replit</a></p>
+                        <p><u><a href="https://github.com/ColemanMitch/GroupMe.FYI">Link to repo on GitHub</a></u></p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="content">
+                        <h4>Speech2Tweet</h4>
+                        <center><img src="assets/img/Speech2Tweet_Live_Demo.gif" width="70%" class="ImageBorder"></center>
+                        <br>
+                        <p>Speech2Tweet is an Alexa skill I created where a user can send a tweet with their Echo device via dictation.</p>
+                        <p>Originally, I wanted to create this Alexa skill using Python, but ran into issues with the handling of <a href="https://developer.amazon.com/en-US/docs/alexa/custom-skills/create-and-edit-custom-slot-types.html">custom slot types</a> (customer user input). I took the dead-end I ran into with Python as an opportunity to brush up on JavaScript. The embedded gif above shows the invocation of the skill in the Alexa Developer Console side-by-side with the output on Twitter.</p>
+                        <p>Note that the source of my "hello world" tweet is "Speech 2 Tweet"</p>
+                        <p><u><a href="https://github.com/ColemanMitch/Speech2Tweet">Link to repo on GitHub</a></u></p>
+                    </div>
+                </div>
             </div>
         </section>
+        -->
         <section class="resume-section" id="resume">
-            <div class="resume-section-content">
+            <div class="resume-section-content fade-in">
                 <h2 class="mb-5">Resume</h2>
-                <iframe src="https://drive.google.com/file/d/19L5c1KQ1M3cTl0eDyJ9MkeqHVkujqsgp/preview" width=90% height="500"></iframe>
-                </iframe>
+                <iframe src="https://drive.google.com/file/d/19L5c1KQ1M3cTl0eDyJ9MkeqHVkujqsgp/preview" width="90%" height="500" class="resume-iframe"></iframe>
             </div>
         </section>
         <section class="resume-section" id="interests">
-            <div class="resume-section-content">
+            <div class="resume-section-content fade-in">
                 <h2 class="mb-5">Interests</h2>
                 <p>Outside of work, I enjoy traveling, weightlifting, reading, listening to podcasts, and following major North American sports (NCAAFB, NFL, MLB, NBA)</p>
-                <center><img class="img-fluid img-profile" src="assets/img/spain-man.jpg" alt="" width=45% /></span>
-                    </a>
+                <center>
+                    <img class="img-fluid img-profile ImageBorder" src="assets/img/spain-man.jpg" alt="Cole in Toledo, Spain" width="45%" />
                     <p>Enjoying the vistas of Toledo, Spain!</p>
                 </center>
             </div>
         </section>
     </div>
     <!-- Bootstrap core JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <!-- Core theme JS-->
@@ -243,6 +520,55 @@
     <script>
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
+            
+            // Fade-in animation for sections
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Dark mode toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const html = document.documentElement;
+            
+            if (themeToggle) {
+                const moonIcon = themeToggle.querySelector('.theme-icon-moon');
+                const sunIcon = themeToggle.querySelector('.theme-icon-sun');
+                
+                // Check for saved theme preference or default to light
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                html.setAttribute('data-theme', savedTheme);
+                updateIcon(savedTheme);
+                
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = html.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    
+                    html.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateIcon(newTheme);
+                });
+                
+                function updateIcon(theme) {
+                    if (!moonIcon || !sunIcon) return;
+                    if (theme === 'dark') {
+                        moonIcon.style.display = 'none';
+                        sunIcon.style.display = 'inline';
+                    } else {
+                        moonIcon.style.display = 'inline';
+                        sunIcon.style.display = 'none';
+                    }
+                }
+            }
         });
     </script>
 </body>
