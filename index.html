@@ -11,108 +11,150 @@
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.4.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/font-mfizz-2.4.1/font-mfizz.css">
     
     <!-- Custom CSS additions -->
     <style>
+        /* Light mode (default) */
         :root {
-            --primary-color: #0563bb;
-            --primary-hover: #0356a8;
-            --secondary-color: #f8f9fa;
-            --text-color: #212529;
-            --background-color: #ffffff;
+            --bg-color: #ffffff;
+            --bg-nav: #000000;
+            --text-color: #000000;
+            --text-muted: #555555;
+            --accent-color: #000000;
+            --accent-hover: #333333;
+            --border-color: #e0e0e0;
+            --card-bg: #ffffff;
+        }
+        
+        /* Dark mode */
+        [data-theme="dark"] {
+            --bg-color: #000000;
+            --bg-nav: #000000;
+            --text-color: #ffffff;
+            --text-muted: #aaaaaa;
+            --accent-color: #ffffff;
+            --accent-hover: #cccccc;
+            --border-color: #333333;
+            --card-bg: #111111;
+        }
+        
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
         
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-color);
             color: var(--text-color);
             scroll-behavior: smooth;
+            line-height: 1.7;
         }
         
         .text-primary {
-            color: var(--primary-color) !important;
+            color: var(--accent-color) !important;
         }
         
         .bg-primary {
-            background-color: var(--primary-color) !important;
+            background-color: var(--bg-nav) !important;
+        }
+        
+        #sideNav {
+            position: fixed;
+        }
+        
+        [data-theme="dark"] #sideNav {
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        @media (max-width: 991.98px) {
+            #sideNav {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            
+            #sideNav .navbar-brand {
+                order: 1;
+                flex-grow: 1;
+            }
+            
+            #sideNav .navbar-toggler {
+                order: 3;
+            }
+            
+            #sideNav .theme-toggle {
+                order: 2;
+                position: static;
+                transform: none;
+                margin: 0 0.5rem 0 0;
+            }
+            
+            #sideNav .navbar-collapse {
+                order: 4;
+                width: 100%;
+            }
+            
+            [data-theme="dark"] #sideNav {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+        }
+        
+        .navbar-dark .navbar-nav .nav-link {
+            opacity: 0.85;
+            transition: opacity 0.2s ease;
         }
         
         .navbar-dark .navbar-nav .nav-link:hover {
-            color: rgba(255, 255, 255, 1);
-            transform: translateY(-2px);
-        }
-        
-        .navbar-nav .nav-item .nav-link {
-            transition: all 0.3s ease;
+            opacity: 1;
         }
         
         section.resume-section {
-            padding-top: 6rem !important;
-            padding-bottom: 6rem !important;
+            padding-top: 5rem !important;
+            padding-bottom: 5rem !important;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        hr.m-0 {
+            display: none;
         }
         
         .img-profile {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            border: 3px solid var(--border-color);
+            transition: opacity 0.2s ease;
         }
         
         .img-profile:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            opacity: 0.9;
         }
         
         .social-icons .social-icon {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            height: 3.5rem;
-            width: 3.5rem;
-            background-color: var(--primary-color);
-            color: #fff;
-            border-radius: 100%;
-            font-size: 1.5rem;
-            margin-right: 1.5rem;
-            transition: all 0.3s ease;
+            height: 3rem;
+            width: 3rem;
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            font-size: 1.25rem;
+            margin-right: 1rem;
+            transition: all 0.2s ease;
         }
         
         .social-icons .social-icon:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .project-card {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            margin-bottom: 2rem;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
-        }
-        
-        .project-card img {
-            width: 100%;
-            border-radius: 8px 8px 0 0;
-        }
-        
-        .project-card .content {
-            padding: 1.5rem;
+            background-color: var(--accent-color);
+            color: #fff;
         }
         
         .fade-in {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
         
         .fade-in.active {
@@ -121,29 +163,112 @@
         }
         
         .skill-icon {
-            font-size: 2.5rem;
-            margin: 0.8rem;
-            transition: all 0.3s ease;
+            font-size: 2rem;
+            margin: 0.5rem;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
         }
         
         .skill-icon:hover {
-            transform: scale(1.2);
-            color: var(--primary-color);
+            color: var(--accent-color);
         }
         
         .resume-iframe {
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
         }
         
         .subheading {
-            color: var(--primary-color);
-            font-weight: 600;
+            color: var(--accent-color);
+            font-weight: 500;
+            text-transform: none;
+            font-size: 1.1rem;
         }
         
         .ImageBorder {
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        
+        /* Dark mode toggle */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+            cursor: pointer;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            margin: 0.5rem auto;
+        }
+        
+        .theme-toggle:hover {
+            color: rgba(255, 255, 255, 1);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .theme-toggle:focus {
+            outline: none;
+        }
+        
+        @media (min-width: 992px) {
+            .theme-toggle {
+                position: absolute;
+                bottom: 1.5rem;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0;
+            }
+        }
+        
+        /* Minimal heading styles */
+        h1, h2, h3 {
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 1.75rem;
+            color: var(--text-color);
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+        }
+        
+        .lead {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+        
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+        
+        a:hover {
+            color: var(--accent-hover);
+            text-decoration: none;
+            border-bottom-color: var(--accent-color);
+        }
+        
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .dev-icons .list-inline-item {
+            margin-right: 0.25rem;
         }
     </style>
 </head>
@@ -166,11 +291,14 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#side-projects">Side Projects</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#resume">Resume</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
             </ul>
         </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <span class="theme-icon-moon"><i class="fa-solid fa-moon"></i></span>
+            <span class="theme-icon-sun" style="display: none;"><i class="fa-solid fa-sun"></i></span>
+        </button>
     </nav>
     <!-- Page Content-->
     <div class="container-fluid p-0">
@@ -313,8 +441,8 @@
         <hr class="m-0" />
         <!-- Interests-->
 
+        <!-- Side Projects section - commented out
         <hr class="m-0" />
-        <!-- Awards-->
         <section class="resume-section" id="side-projects">
             <div class="resume-section-content fade-in">
                 <h2 class="mb-5">Side Projects</h2>
@@ -335,9 +463,9 @@
                         <center><img src="https://user-images.githubusercontent.com/44789534/162627337-af8a3ed6-8727-4603-9cd7-38729679d489.png" width="50%" /></center>
                         <p>Spowerfy-Redux is a web app written in React and Node that controls a user's Spotify playback to skip to the next song in a playlist at a specified interval (users can select between 5 - 120 seconds). Users also have the option to start
                             the playback on any of their active devices and any of their playlists. The ideal use case for Spowerfy is to automate your next power hour! 🍺 <br><br> It is also a refactor of an existing project that I built back in 2020 in Python
-                            with Flask which can be found linked <a href="https://github.com/ColemanMitch/Spowerfy" class="text-primary">here.</a></p>
-                        <p><u><a href="https://spowerfy.onrender.com/" class="text-primary">Link</a></u> to project.
-                        <p><u><a href="https://github.com/ColemanMitch/Spowerfy-Redux" class="text-primary">Link to repo on GitHub</a></u></p>
+                            with Flask which can be found linked <a href="https://github.com/ColemanMitch/Spowerfy">here.</a></p>
+                        <p><u><a href="https://spowerfy.onrender.com/">Link</a></u> to project.
+                        <p><u><a href="https://github.com/ColemanMitch/Spowerfy-Redux">Link to repo on GitHub</a></u></p>
                     </div>
                 </div>
                 
@@ -346,8 +474,8 @@
                         <h4>GroupMe.FYI</h4>
                         <center><img src="https://user-images.githubusercontent.com/44789534/162627905-4981ec62-70f2-419d-b54d-c3fbbfe3650e.png" width="50%" /></center>
                         <p>GroupMe.FYI is a web app written in Django that authenticates with GroupMe allowing users to see key stats (total likes, total messages, etc.) about the user's groups.</p>
-                        <p><u>Note:</u> I'm currently working on porting over this project from Python to Ruby which you can find <a href="https://GroupMeFYI-Rails.colemanmitch.repl.co" class="text-primary">linked here on Replit</a></p>
-                        <p><u><a href="https://github.com/ColemanMitch/GroupMe.FYI" class="text-primary">Link to repo on GitHub</a></u></p>
+                        <p><u>Note:</u> I'm currently working on porting over this project from Python to Ruby which you can find <a href="https://GroupMeFYI-Rails.colemanmitch.repl.co">linked here on Replit</a></p>
+                        <p><u><a href="https://github.com/ColemanMitch/GroupMe.FYI">Link to repo on GitHub</a></u></p>
                     </div>
                 </div>
                 
@@ -357,14 +485,14 @@
                         <center><img src="assets/img/Speech2Tweet_Live_Demo.gif" width="70%" class="ImageBorder"></center>
                         <br>
                         <p>Speech2Tweet is an Alexa skill I created where a user can send a tweet with their Echo device via dictation.</p>
-                        <p>Originally, I wanted to create this Alexa skill using Python, but ran into issues with the handling of <a href="https://developer.amazon.com/en-US/docs/alexa/custom-skills/create-and-edit-custom-slot-types.html" class="text-primary">custom slot types</a>                        (customer user input). I took the dead-end I ran into with Python as an opportunity to brush up on JavaScript. The embedded gif above shows the invocation of the skill in the Alexa Developer Console side-by-side with the output
-                            on Twitter. </p>
+                        <p>Originally, I wanted to create this Alexa skill using Python, but ran into issues with the handling of <a href="https://developer.amazon.com/en-US/docs/alexa/custom-skills/create-and-edit-custom-slot-types.html">custom slot types</a> (customer user input). I took the dead-end I ran into with Python as an opportunity to brush up on JavaScript. The embedded gif above shows the invocation of the skill in the Alexa Developer Console side-by-side with the output on Twitter.</p>
                         <p>Note that the source of my "hello world" tweet is "Speech 2 Tweet"</p>
-                        <p><u><a href="https://github.com/ColemanMitch/Speech2Tweet" class="text-primary">Link to repo on GitHub</a></u></p>
+                        <p><u><a href="https://github.com/ColemanMitch/Speech2Tweet">Link to repo on GitHub</a></u></p>
                     </div>
                 </div>
             </div>
         </section>
+        -->
         <section class="resume-section" id="resume">
             <div class="resume-section-content fade-in">
                 <h2 class="mb-5">Resume</h2>
@@ -407,6 +535,40 @@
             fadeElements.forEach(element => {
                 observer.observe(element);
             });
+            
+            // Dark mode toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const html = document.documentElement;
+            
+            if (themeToggle) {
+                const moonIcon = themeToggle.querySelector('.theme-icon-moon');
+                const sunIcon = themeToggle.querySelector('.theme-icon-sun');
+                
+                // Check for saved theme preference or default to light
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                html.setAttribute('data-theme', savedTheme);
+                updateIcon(savedTheme);
+                
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = html.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    
+                    html.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateIcon(newTheme);
+                });
+                
+                function updateIcon(theme) {
+                    if (!moonIcon || !sunIcon) return;
+                    if (theme === 'dark') {
+                        moonIcon.style.display = 'none';
+                        sunIcon.style.display = 'inline';
+                    } else {
+                        moonIcon.style.display = 'inline';
+                        sunIcon.style.display = 'none';
+                    }
+                }
+            }
         });
     </script>
 </body>
