@@ -116,7 +116,13 @@
     },
     restart: () => {
       root.classList.add("is-restarting");
-      setTimeout(() => location.reload(), 400);
+      // A restart starts fresh: no section hash and no remembered scroll position.
+      history.scrollRestoration = "manual";
+      history.replaceState(null, "", location.pathname + location.search);
+      setTimeout(() => {
+        scrollTo(0, 0);
+        location.reload();
+      }, 400);
     },
   };
 
