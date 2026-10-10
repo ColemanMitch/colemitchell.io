@@ -373,6 +373,15 @@
     row.parentElement.querySelectorAll("tr").forEach((r) => r.classList.toggle("is-selected", r === row));
   });
 
+  // ---------- Email ----------
+
+  // The address is assembled on click so it never appears whole in the page source.
+  document.querySelectorAll("[data-email]").forEach((link) => {
+    link.addEventListener("click", () => {
+      link.href = `mailto:${["w.coleman.mitchell", "gmail.com"].join("@")}`;
+    });
+  });
+
   // ---------- Layout mode ----------
 
   function applyMode() {
