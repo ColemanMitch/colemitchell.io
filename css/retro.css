@@ -102,7 +102,7 @@ img.is-dithered {
   background: none;
   color: inherit;
   font: inherit;
-  cursor: default;
+  cursor: pointer;
 }
 
 /* 25x33 pixel grid at half size: one grid pixel per device pixel on 2x screens */
@@ -147,7 +147,7 @@ img.is-dithered {
   text-align: left;
   text-decoration: none;
   white-space: nowrap;
-  cursor: default;
+  cursor: pointer;
 }
 
 .menu-list a:hover,
@@ -161,6 +161,7 @@ img.is-dithered {
 
 .menu-list button:disabled {
   color: var(--disabled);
+  cursor: default;
 }
 
 .menu-sep {
@@ -224,7 +225,7 @@ img.is-dithered {
   margin: 0 auto;
   color: var(--ink);
   text-decoration: none;
-  cursor: default;
+  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -321,7 +322,7 @@ img.is-dithered {
   border: 1px solid var(--ink);
   background: var(--paper);
   box-shadow: 0 0 0 1px var(--paper);
-  cursor: default;
+  cursor: pointer;
 }
 
 .box:active {
@@ -475,7 +476,7 @@ img.is-dithered {
   font: 400 16px/1 var(--chrome);
   text-align: center;
   text-decoration: none;
-  cursor: default;
+  cursor: pointer;
 }
 
 .btn:active {
@@ -579,6 +580,10 @@ img.is-dithered {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.listview tbody tr {
+  cursor: pointer;
 }
 
 .listview tbody tr:first-child td {
