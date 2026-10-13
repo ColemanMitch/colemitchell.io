@@ -849,4 +849,10 @@ img.is-dithered {
   .btn {
     padding: 6px 12px;
   }
+
+  .listview th,
+  .listview td {
+    padding-left: 8px;
+    padding-right: 6px;
+  }
 }
