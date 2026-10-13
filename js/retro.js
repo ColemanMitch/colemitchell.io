@@ -429,22 +429,49 @@
 
   function loadOriginal(src) {
     if (!originals.has(src)) {
-      const img = new Image();
-      img.src = src;
-      originals.set(src, img.decode().then(() => img));
+      // onload rather than decode(): decode() can stall in background tabs.
+      const loaded = new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+      });
+      originals.set(src, loaded);
     }
     return originals.get(src);
+  }
+
+  // A light blur (about half a pixel) before dithering calms speckle in busy textures.
+  function soften(src, width, height) {
+    const k = 0.107;
+    const c = 1 - 2 * k;
+    const tmp = new Float32Array(src.length);
+    const out = new Float32Array(src.length);
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const i = y * width + x;
+        tmp[i] = c * src[i] + k * (src[x > 0 ? i - 1 : i] + src[x < width - 1 ? i + 1 : i]);
+      }
+    }
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const i = y * width + x;
+        out[i] = c * tmp[i] + k * (tmp[y > 0 ? i - width : i] + tmp[y < height - 1 ? i + width : i]);
+      }
+    }
+    return out;
   }
 
   // Bill Atkinson's error diffusion: pass 6/8 of the error to nearby pixels, drop the rest.
   function atkinson(image) {
     const { data, width, height } = image;
-    const lum = new Float32Array(width * height);
+    let lum = new Float32Array(width * height);
     for (let i = 0; i < lum.length; i++) {
       const p = i * 4;
-      const v = (0.299 * data[p] + 0.587 * data[p + 1] + 0.114 * data[p + 2]) / 255;
-      lum[i] = 255 * Math.pow(v, 0.9);
+      lum[i] = 0.299 * data[p] + 0.587 * data[p + 1] + 0.114 * data[p + 2];
     }
+    lum = soften(lum, width, height);
+    for (let i = 0; i < lum.length; i++) lum[i] = 255 * Math.pow(lum[i] / 255, 0.9);
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         const i = y * width + x;
@@ -469,7 +496,9 @@
   }
 
   async function dither(img) {
-    const width = Math.round(img.getBoundingClientRect().width);
+    const cssWidth = img.getBoundingClientRect().width;
+    // Dots two device pixels wide: finer on 3x phones, unchanged on 2x screens.
+    const width = Math.round(cssWidth * Math.max(1, (window.devicePixelRatio || 1) / 2));
     if (!width || Number(img.dataset.ditherWidth) === width) return;
     img.dataset.ditherWidth = width;
     img.dataset.src ||= img.getAttribute("src");
